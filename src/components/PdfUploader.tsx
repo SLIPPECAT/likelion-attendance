@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import {
   Upload,
   FileText,
-  Sparkles,
   Loader2,
   AlertCircle,
   ExternalLink,
@@ -19,14 +18,12 @@ interface PdfUploaderProps {
     cohort: string;
     records: AttendanceRecord[];
   }) => void;
-  onLoadSample: () => void;
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
 }
 
 export const PdfUploader: React.FC<PdfUploaderProps> = ({
   onDataParsed,
-  onLoadSample,
   isLoading,
   setIsLoading,
 }) => {
@@ -85,42 +82,29 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
   return (
     <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xs">
       {/* Instructions & Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-2">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#fff7ed] text-[#ff6000] text-xs font-semibold border border-[#ffedd5]">
-            <FileText className="w-3.5 h-3.5" />
-            <span>멋쟁이사자부트캠프 출결현황 PDF</span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
-            출결 데이터 PDF 업로드
-          </h2>
-          <div className="text-sm text-gray-600 space-y-1">
-            <p className="flex items-center flex-wrap gap-1">
-              <span>멋쟁이사자부트캠프</span>
-              <a
-                href={LIKELION_ATTENDANCE_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center text-[#ff6000] font-medium hover:underline gap-0.5"
-              >
-                <span>출결현황 페이지</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-              <span>에서 <strong className="text-gray-800">'출결 데이터 다운로드'</strong>를 통해 PDF를 내려받아 업로드하세요.</span>
-            </p>
-          </div>
+      <div className="space-y-2">
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#fff7ed] text-[#ff6000] text-xs font-semibold border border-[#ffedd5]">
+          <FileText className="w-3.5 h-3.5" />
+          <span>멋쟁이사자부트캠프 출결현황 PDF</span>
         </div>
-
-        {/* 1-Click Sample Button */}
-        <button
-          onClick={onLoadSample}
-          type="button"
-          disabled={isLoading}
-          className="btn-pill-primary shrink-0 text-xs"
-        >
-          <Sparkles className="w-4 h-4" />
-          <span>샘플 데이터로 미리보기</span>
-        </button>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+          출결 데이터 PDF 업로드
+        </h2>
+        <div className="text-sm text-gray-600 space-y-1">
+          <p className="flex items-center flex-wrap gap-1">
+            <span>멋쟁이사자부트캠프</span>
+            <a
+              href={LIKELION_ATTENDANCE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center text-[#ff6000] font-medium hover:underline gap-0.5"
+            >
+              <span>출결현황 페이지</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <span>에서 <strong className="text-gray-800">'출결 데이터 다운로드'</strong>를 통해 PDF를 내려받아 업로드하세요.</span>
+          </p>
+        </div>
       </div>
 
       {/* Drag & Drop Zone */}

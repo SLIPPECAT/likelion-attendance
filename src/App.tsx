@@ -79,7 +79,6 @@ export default function App() {
         <section>
           <PdfUploader
             onDataParsed={handleDataParsed}
-            onLoadSample={handleLoadSample}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
           />
