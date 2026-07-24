@@ -149,7 +149,7 @@ export const AttendanceSummaryView: React.FC<AttendanceSummaryProps> = ({ summar
             <button
               type="button"
               onClick={() => setIsShareOpen(true)}
-              className="shrink-0 w-11 h-11 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 hover:text-[#ff6000] transition-colors cursor-pointer"
+              className="shrink-0 w-11 h-11 rounded-2xl border border-hairline bg-white hover:bg-surface-warm flex items-center justify-center text-gray-600 hover:text-accent transition-colors cursor-pointer"
               title="출결 카드 공유하기"
             >
               <Share2 className="w-4 h-4" />

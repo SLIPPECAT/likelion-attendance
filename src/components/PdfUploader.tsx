@@ -6,7 +6,6 @@ import {
   Loader2,
   AlertCircle,
   ExternalLink,
-  Clipboard,
 } from 'lucide-react';
 import { AttendanceRecord } from '../types';
 import { extractTextFromPdf } from '../utils/pdfText';
@@ -33,8 +32,6 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
 }) => {
   const [isDragOver, setIsDragOver] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [manualText, setManualText] = useState('');
-  const [showManualText, setShowManualText] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const LIKELION_ATTENDANCE_URL = 'https://bootcamp.likelion.net/my/courses/detail/kdt-cld-6th/attendance';
@@ -58,7 +55,7 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
 
         if (parsed.records.length === 0) {
           throw new Error(
-            'PDF에서 출결 내역을 찾을 수 없습니다. 텍스트 레이어가 있는 PDF인지 확인하거나, 아래 "텍스트 직접 입력"을 이용해주세요.'
+            'PDF에서 출결 내역을 찾을 수 없습니다. 텍스트 레이어가 있는 PDF인지 확인해주세요.'
           );
         }
 
@@ -82,29 +79,6 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
       reader.readAsText(file);
     } else {
       reader.readAsDataURL(file);
-    }
-  };
-
-  const handleManualTextSubmit = () => {
-    if (!manualText.trim()) return;
-
-    setErrorMsg(null);
-    setIsLoading(true);
-
-    try {
-      const parsed = parseAttendanceText(manualText);
-
-      if (parsed.records.length === 0) {
-        throw new Error(
-          '텍스트에서 출결 내역을 찾을 수 없습니다. "3월 25일 결석"과 같은 형식으로 입력해주세요.'
-        );
-      }
-
-      onDataParsed(parsed);
-    } catch (err: any) {
-      setErrorMsg(err?.message || '텍스트 처리 중 오류가 발생했습니다.');
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -219,40 +193,6 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
           <div className="flex-1">
             <p className="font-semibold">{errorMsg}</p>
           </div>
-        </div>
-      )}
-
-      {/* Manual Text Input Toggle */}
-      <div className="flex justify-end">
-        <button
-          type="button"
-          onClick={() => setShowManualText(!showManualText)}
-          className="text-xs text-gray-500 hover:text-[#ff6000] transition-colors flex items-center space-x-1 cursor-pointer"
-        >
-          <Clipboard className="w-3.5 h-3.5" />
-          <span>{showManualText ? '텍스트 직접 입력 접기' : '텍스트 직접 입력'}</span>
-        </button>
-      </div>
-
-      {showManualText && (
-        <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-3">
-          <label className="block text-xs font-semibold text-gray-800">
-            출결 확인서 텍스트 입력:
-          </label>
-          <textarea
-            value={manualText}
-            onChange={(e) => setManualText(e.target.value)}
-            placeholder="성명 홍길동 조회기간 2026.03.25~2026.07.22&#10;3월 25일 결석&#10;3월 26일 출석&#10;3월 27일 조퇴..."
-            className="w-full h-24 bg-white border border-gray-200 rounded-xl p-3 text-xs text-gray-900 focus:outline-none focus:border-[#ff6000] resize-none"
-          />
-          <button
-            type="button"
-            onClick={handleManualTextSubmit}
-            disabled={isLoading || !manualText.trim()}
-            className="btn-pill-primary w-full text-xs disabled:opacity-50"
-          >
-            텍스트 분석하기
-          </button>
         </div>
       )}
     </div>
