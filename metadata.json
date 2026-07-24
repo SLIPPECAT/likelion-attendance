@@ -1,0 +1,6 @@
+{
+  "name": "고용24 출결 분석 및 80% 수료 예측 계산기",
+  "description": "고용24/HRD-Net PDF 출결 확인서를 분석하여 지각·조퇴·외출 3회=결석1회 공식을 적용하고, 총 교육일수(111일 등) 기준 향후 수료 가능 여부 및 여유 결석 일수를 시뮬레이션합니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

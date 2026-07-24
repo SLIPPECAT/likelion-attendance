@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --color-accent: #ff6000;
+  --color-foreground: #111827;
+  --color-muted: #6b7280;
+  --color-muted-secondary: #9ca3af;
+  --color-hairline: #e5e7eb;
+  --color-surface-warm: #fff7ed;
+  --color-border: #d1d5db;
+  --color-canvas: #f9fafb;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom utility classes reflecting DESIGN.md guidelines */
+.bg-surface-warm {
+  background-color: var(--color-surface-warm);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.border-hairline {
+  border-color: var(--color-hairline);
+}
+
+.border-brand {
+  border-color: var(--color-border);
+}
+
+/* Pill buttons as specified in DESIGN.md: radius 9999px, border 1px solid --color-border */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: #fff7ed;
+}
+
+.btn-pill-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-accent);
+  color: #ffffff;
+  background-color: #ff6000;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-pill-primary:hover {
+  background-color: #ea580c;
+  border-color: #ea580c;
+}
+
+/* Promotional tile format: radius 16px, padding 24-40px, bg --color-surface-warm */
+.promo-tile {
+  background-color: var(--color-surface-warm);
+  border: 1px solid #ffedd5;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
