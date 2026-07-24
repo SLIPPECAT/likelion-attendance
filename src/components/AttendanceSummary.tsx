@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   CalendarCheck,
   CalendarX,
@@ -10,10 +10,8 @@ import {
   Sparkles,
   Shield,
   Zap,
-  Share2,
 } from 'lucide-react';
 import { AttendanceSummary } from '../types';
-import { ShareCardModal } from './ShareCardModal';
 
 interface AttendanceSummaryProps {
   summary: AttendanceSummary;
@@ -124,7 +122,6 @@ export const AttendanceSummaryView: React.FC<AttendanceSummaryProps> = ({ summar
   } = summary;
 
   const currentGrade = getGradeInfo(attendanceRate);
-  const [isShareOpen, setIsShareOpen] = useState(false);
 
   return (
     <div className="space-y-6">
@@ -145,16 +142,6 @@ export const AttendanceSummaryView: React.FC<AttendanceSummaryProps> = ({ summar
 
           {/* Completion Status & Grade Badge */}
           <div className="flex items-center gap-3">
-            {/* Share Button */}
-            <button
-              type="button"
-              onClick={() => setIsShareOpen(true)}
-              className="shrink-0 w-11 h-11 rounded-2xl border border-hairline bg-white hover:bg-surface-warm flex items-center justify-center text-gray-600 hover:text-accent transition-colors cursor-pointer"
-              title="출결 카드 공유하기"
-            >
-              <Share2 className="w-4 h-4" />
-            </button>
-
             {/* Grade Tile Badge */}
             <div className={`p-3 sm:p-4 rounded-2xl border flex items-center space-x-3 ${currentGrade.badgeBg} ${currentGrade.borderColor}`}>
               <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-extrabold text-2xl shadow-xs ${currentGrade.activeColor}`}>
@@ -461,10 +448,6 @@ export const AttendanceSummaryView: React.FC<AttendanceSummaryProps> = ({ summar
           </div>
         </div>
       </div>
-
-      {isShareOpen && (
-        <ShareCardModal summary={summary} onClose={() => setIsShareOpen(false)} />
-      )}
     </div>
   );
 };
