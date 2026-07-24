@@ -25,12 +25,4 @@ npm run build
 
 `dist/` 폴더에 정적 파일이 생성됩니다.
 
-## GitHub Pages 배포
-
-`main` 브랜치에 push하면 `.github/workflows/deploy.yml`이 자동으로 빌드 후 GitHub Pages에 배포합니다. 저장소 Settings → Pages → Source를 **GitHub Actions**로 설정해두면 됩니다.
-
-수동 배포를 원한다면:
-
-```
-npm run deploy
-```
+`main`에 push하면 `.github/workflows/deploy.yml`이 자동으로 빌드해서 GitHub Pages(`slippecat.github.io/likelion-attendance`)에 올려줍니다.
