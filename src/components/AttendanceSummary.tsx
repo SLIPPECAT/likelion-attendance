@@ -8,8 +8,6 @@ import {
   CheckCircle,
   Scale,
   Sparkles,
-  Shield,
-  Zap,
 } from 'lucide-react';
 import { AttendanceSummary } from '../types';
 
